@@ -1,0 +1,14 @@
+const ErrorHander = require('../utils/errorHandler');
+const catchAsyncErrors = require("./catchAsyncErrors");
+
+
+exports.isAuthenticated = catchAsyncErrors(async (req, res, next) => {
+    const { key } = req.body;
+  
+    if (key !== 12345) {
+      return next(new ErrorHander("Invalid API Key", 401));
+    }
+   
+    next();
+  });
+  
